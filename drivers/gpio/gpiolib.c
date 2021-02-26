@@ -474,7 +474,7 @@ EXPORT_SYMBOL_GPL(gpiochip_line_is_valid);
 
 static void gpiodevice_release(struct device *dev)
 {
-	struct gpio_device *gdev = dev_get_drvdata(dev);
+	struct gpio_device *gdev = container_of(dev, struct gpio_device, dev);
 
 	list_del(&gdev->list);
 	ida_free(&gpio_ida, gdev->id);
